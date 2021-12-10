@@ -2,6 +2,8 @@
 
 const VersionChecker = require('ember-cli-version-checker');
 const NATIVE_SUPPORT_VERSION = '3.22.0-alpha.1';
+const cacheKeyForTree = require('calculate-cache-key-for-tree');
+
 let hasBeenWarned = false;
 
 module.exports = {
@@ -34,6 +36,10 @@ module.exports = {
         compileModules: false,
       },
     });
+  },
+
+  cacheKeyForTree(treeType) {
+    return cacheKeyForTree(treeType, this);
   },
 
   _ensureThisImport() {
